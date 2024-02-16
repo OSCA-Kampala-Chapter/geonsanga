@@ -18,9 +18,9 @@ define('BASEPATH', "api/");
 require_once __DIR__ . '/vendor/autoload.php'; 
 
 use Steampixel\Route;
-use Uganda\Uganda;
+use Uganda\Geo;
 
-// $uganda = new Uganda();
+$uganda = new Geo();
 
 /**
  * validator
@@ -52,7 +52,6 @@ $payload = json_decode(file_get_contents('php://input'), true);
 foreach (glob(ROUTES."*.php") as $routes):
   include $routes; 
 endforeach; 
-
 
 /**
  * Routing
