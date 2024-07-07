@@ -116,13 +116,3 @@ Route::add('/v1/villages', function () use($uganda, $obj) {
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
-
-// Get all counties in a particular district
-// Route::add('/v1/([a-z-0-9-]*)/counties', function ($district) use($uganda) {
-//   header('Content-Type: application/json');
-//   // echo $district;
-//   $counties = $uganda
-//                 ->district($district)
-//                 ->counties();
-//   echo json_encode($counties, JSON_PRETTY_PRINT);
-// },'GET');
