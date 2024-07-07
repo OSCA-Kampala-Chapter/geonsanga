@@ -11,11 +11,19 @@ error_reporting(E_ALL);
 header_remove("X-Powered-By");
 define('ROUTES', "routes/");
 define('BASEPATH', "api/"); 
+define('UGANDA', 'Uganda/');
 
 /**
  * Composer
  */
 require_once __DIR__ . '/vendor/autoload.php'; 
+
+/*
+* include Uganda Class files
+*/
+foreach (glob(UGANDA."*.php") as $ug):
+  require_once $ug; 
+endforeach;
 
 use Steampixel\Route;
 use Uganda\Uganda;

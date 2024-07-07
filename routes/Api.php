@@ -1,43 +1,121 @@
 <?php
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
+
 use Steampixel\Route;
+use Uganda\Exceptions\CountyNotFoundException;
+use Uganda\Exceptions\DistrictNotFoundException;
+use Uganda\Exceptions\ParishNotFoundException;
+use Uganda\Exceptions\SubCountyNotFoundException;
+use Uganda\Exceptions\VillageNotFoundException;
+
 $obj = new stdClass();
 
 Route::add('/v1/ping', function () use($uganda, $obj) {
-  header('Content-Type: application/json');
-  $obj->status = 1;
-  $obj->response = $uganda->districts();
-  echo json_encode($obj, JSON_PRETTY_PRINT);
-},'POST');
+  echo "Hello World";
+},'GET');
 
 // Get all districts
-Route::add('/v1/districts', function () use($uganda) {
+Route::add('/v1/districts', function () use($uganda, $obj) {
   header('Content-Type: application/json');
-  echo json_encode($uganda->districts(), JSON_PRETTY_PRINT);
-},'POST');
+
+  try {
+    $districts = $uganda->districts();
+    $count = count($districts);
+    
+    $names = [];
+    foreach($districts as $dist):
+      $names[] = $dist->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->districts = $names;
+  } catch (DistrictNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
 
 // Get all Counties
-Route::add('/v1/counties', function () use($uganda) {
+Route::add('/v1/counties', function () use($uganda, $obj) {
   header('Content-Type: application/json');
-  echo json_encode($uganda->counties()->_counties, JSON_PRETTY_PRINT);
-},'POST');
+  try {
+    $counties = $uganda->counties();
+    $count = count($counties);
+    
+    $names = [];
+    foreach($counties as $county):
+      $names[] = $county->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->counties = $names;
+  } catch (CountyNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
 
 // Get all Sub Counties
-Route::add('/v1/subcounties', function () use($uganda) {
+Route::add('/v1/subcounties', function () use($uganda, $obj) {
   header('Content-Type: application/json');
-  echo json_encode($uganda->sub_counties()->_sub_counties, JSON_PRETTY_PRINT);
-},'POST');
+  try {
+    $subcounties = $uganda->subcounties();
+    $count = count($subcounties);
+    
+    $names = [];
+    foreach($subcounties as $subcounty):
+      $names[] = $subcounty->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->subcounties = $names;
+  } catch (SubCountyNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
 
 // Get all Parishes
-Route::add('/v1/parishes', function () use($uganda) {
+Route::add('/v1/parishes', function () use($uganda, $obj) {
   header('Content-Type: application/json');
-  echo json_encode($uganda->parishes()->_parishes, JSON_PRETTY_PRINT);
-},'POST');
+  try {
+    $parishes = $uganda->parishes();
+    $count = count($parishes);
+    
+    $names = [];
+    foreach($parishes as $parish):
+      $names[] = $parish->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->parishes = $names;
+  } catch (ParishNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
 
 // Get all Villages
-Route::add('/v1/villages', function () use($uganda) {
+Route::add('/v1/villages', function () use($uganda, $obj) {
   header('Content-Type: application/json');
-  echo json_encode($uganda->villages()->_villages, JSON_PRETTY_PRINT);
-},'POST');
+  try {
+    $villages = $uganda->villages();
+    $count = count($villages);
+    
+    $names = [];
+    foreach($villages as $parish):
+      $names[] = $parish->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->villages = $names;
+  } catch (VillageNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
 
 // Get all counties in a particular district
 // Route::add('/v1/([a-z-0-9-]*)/counties', function ($district) use($uganda) {
