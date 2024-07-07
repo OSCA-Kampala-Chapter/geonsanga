@@ -12,7 +12,7 @@ Route::add('/v1/ping', function () use($uganda, $obj) {
 // Get all districts
 Route::add('/v1/districts', function () use($uganda) {
   header('Content-Type: application/json');
-  echo json_encode($uganda->districts()->_districts, JSON_PRETTY_PRINT);
+  echo json_encode($uganda->districts(), JSON_PRETTY_PRINT);
 },'POST');
 
 // Get all Counties

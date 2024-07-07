@@ -15,7 +15,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA]
 
 <Files .env>
-    order allow,deny
+    Order allow,deny
     Deny from all
 </Files>
 
