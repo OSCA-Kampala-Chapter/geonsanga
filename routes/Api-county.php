@@ -14,8 +14,11 @@ $obj = new stdClass();
  */
 // Get all County details
 Route::add('/v1/county/([a-z-0-9-]*)', function ($county) use($uganda, $obj) {
-
-  echo "Hello county";
+  /**
+   * @todo get the county without spaces and insert spaces before every uppercase letter
+   */
+  // echo "Hello county";
+  echo urldecode($county);
   // header('Content-Type: application/json');
 
   // try {
