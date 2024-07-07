@@ -1,7 +1,5 @@
 {
     "require": {
-        "thingengineer/mysqli-database-class": "dev-master",
-        "rakit/validation": "^1.4",
         "adhocore/env": "^0.1.0",
         "steampixel/simple-php-router": "^0.7.1"
     }
