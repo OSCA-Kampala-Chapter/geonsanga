@@ -1,9 +1,4 @@
 <?php
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
-
 use Steampixel\Route;
 use Uganda\Exceptions\CountyNotFoundException;
 use Uganda\Exceptions\DistrictNotFoundException;
@@ -13,7 +8,7 @@ use Uganda\Exceptions\VillageNotFoundException;
 
 $obj = new stdClass();
 
-Route::add('/v1/ping', function () use($uganda, $obj) {
+Route::add('/v1/ping', function () {
   echo "Hello World";
 },'GET');
 
