@@ -12,11 +12,9 @@ $obj = new stdClass();
 /**
  * County Particular operations
  */
-// Get all County details, without a space
+// Get all County details, without a space e.g. LabworCounty
 Route::add('/v1/county/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
-  /**
-   * @todo get the county without spaces and insert spaces before every uppercase letter
-   */
+
   $county = insertSpaceBeforeUppercase($param);
   $county_ = $uganda->county($county);
 
