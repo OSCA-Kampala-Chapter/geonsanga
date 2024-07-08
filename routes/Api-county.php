@@ -83,3 +83,29 @@ Route::add('/v1/([a-z-0-9-]*)/parishes', function ($param) use($uganda, $obj) {
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
+// Get all parsihes in a particular county e.g. LabworCounty
+Route::add('/v1/([a-z-0-9-]*)/villages', function ($param) use($uganda, $obj) {
+
+  $county = insertSpaceBeforeUppercase($param);
+  
+  header('Content-Type: application/json');
+  try {
+    $villages = $uganda
+              ->county($county)
+              ->villages();
+
+    $count = count($villages);
+
+    $names = [];
+    foreach($villages as $village):
+      $names[] = $village->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->subcounties = $names;
+  } catch (CountyNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
+
