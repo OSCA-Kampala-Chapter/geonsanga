@@ -31,3 +31,31 @@ Route::add('/v1/county/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
+// // Get all subcounties in a particular county e.g. LabworCounty
+Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($param) use($uganda, $obj) {
+
+  $county = insertSpaceBeforeUppercase($param);
+  
+
+  header('Content-Type: application/json');
+
+  try {
+    $subcounties_ = $uganda
+              ->county($county)
+              ->subcounties();
+
+    $count = count($subcounties_);
+
+    $names = [];
+    foreach($subcounties_ as $subcounty):
+      $names[] = $subcounty->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->subcounties = $names;
+  } catch (CountyNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
+
