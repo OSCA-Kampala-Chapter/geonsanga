@@ -46,7 +46,7 @@ Route::add('/v1/subcounty/([a-z-0-9-]*)/parishes', function ($param) use($uganda
     $obj->count = $count;
     $obj->parishes = $names;
   } catch (SubCountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new SubCountyNotFoundException(sprintf("You're sailing in unchartered waters, %s subcounty not found", $subcounty));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -73,7 +73,7 @@ Route::add('/v1/subcounty/([a-z-0-9-]*)/villages', function ($param) use($uganda
     $obj->count = $count;
     $obj->villages = $names;
   } catch (SubCountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new SubCountyNotFoundException(sprintf("You're sailing in unchartered waters, %s subcounty not found", $subcounty));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);

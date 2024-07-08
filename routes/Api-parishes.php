@@ -24,7 +24,7 @@ Route::add('/v1/parish/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
     $obj->count = 1;
     $obj->parish = $parish_;
   } catch (ParishNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new ParishNotFoundException(sprintf("You're sailing in unchartered waters, %s parish not found", $parish));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -51,7 +51,7 @@ Route::add('/v1/parish/([a-z-0-9-]*)/villages', function ($param) use($uganda, $
     $obj->count = $count;
     $obj->villages = $names;
   } catch (ParishNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new ParishNotFoundException(sprintf("You're sailing in unchartered waters, %s parish not found", $parish));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);

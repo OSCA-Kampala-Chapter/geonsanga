@@ -19,7 +19,7 @@ Route::add('/v1/village/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
     $obj->count = 1;
     $obj->village = $village_;
   } catch (VillageNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    $obj->error = new VillageNotFoundException(sprintf("You're sailing in unchartered waters, %s village not found", $village));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);

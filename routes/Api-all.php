@@ -27,7 +27,7 @@ Route::add('/v1/districts', function () use($uganda, $obj) {
     $obj->count = $count;
     $obj->districts = $names;
   } catch (DistrictNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new DistrictNotFoundException(sprintf("You're sailing in unchartered waters, districts not found"));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -47,7 +47,7 @@ Route::add('/v1/counties', function () use($uganda, $obj) {
     $obj->count = $count;
     $obj->counties = $names;
   } catch (CountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new CountyNotFoundException(sprintf("You're sailing in unchartered waters, counties not found"));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -67,7 +67,7 @@ Route::add('/v1/subcounties', function () use($uganda, $obj) {
     $obj->count = $count;
     $obj->subcounties = $names;
   } catch (SubCountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new SubCountyNotFoundException(sprintf("You're sailing in unchartered waters, subcounties not found"));
   }
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
@@ -86,7 +86,7 @@ Route::add('/v1/parishes', function () use($uganda, $obj) {
     $obj->count = $count;
     $obj->parishes = $names;
   } catch (ParishNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new SubCountyNotFoundException(sprintf("You're sailing in unchartered waters, parishes not found"));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -106,7 +106,7 @@ Route::add('/v1/villages', function () use($uganda, $obj) {
     $obj->count = $count;
     $obj->villages = $names;
   } catch (VillageNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new VillageNotFoundException(sprintf("You're sailing in unchartered waters, villages not found"));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);

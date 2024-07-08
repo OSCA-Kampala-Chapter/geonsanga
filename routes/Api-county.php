@@ -19,7 +19,7 @@ Route::add('/v1/county/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
     $obj->count = 1;
     $obj->county = $county_;
   } catch (CountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new CountyNotFoundException(sprintf("You're sailing in unchartered waters, %s County not found", $county));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -45,7 +45,7 @@ Route::add('/v1/county/([a-z-0-9-]*)/subcounties', function ($param) use($uganda
     $obj->count = $count;
     $obj->subcounties = $names;
   } catch (CountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new CountyNotFoundException(sprintf("You're sailing in unchartered waters, %s County not found", $county));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -71,7 +71,7 @@ Route::add('/v1/county/([a-z-0-9-]*)/parishes', function ($param) use($uganda, $
     $obj->count = $count;
     $obj->parishes = $names;
   } catch (CountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new CountyNotFoundException(sprintf("You're sailing in unchartered waters, %s County not found", $county));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);
@@ -97,7 +97,7 @@ Route::add('/v1/county/([a-z-0-9-]*)/villages', function ($param) use($uganda, $
     $obj->count = $count;
     $obj->villages = $names;
   } catch (CountyNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new CountyNotFoundException(sprintf("You're sailing in unchartered waters, %s County not found", $county));
   }
 
   echo json_encode($obj, JSON_PRETTY_PRINT);

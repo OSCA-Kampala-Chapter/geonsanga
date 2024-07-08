@@ -17,7 +17,7 @@ Route::add('/v1/district/([a-z-0-9-]*)', function ($district) use($uganda, $obj)
     $obj->count = 1;
     $obj->district = $dist;
   } catch (DistrictNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    $obj->error =  new DistrictNotFoundException(sprintf("You're sailing in unchartered waters, %s district not found", $district));
   }
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
@@ -40,7 +40,7 @@ Route::add('/v1/district/([a-z-0-9-]*)/counties', function ($district) use($ugan
     $obj->count = $count;
     $obj->counties = $names;
   } catch (DistrictNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new DistrictNotFoundException(sprintf("You're sailing in unchartered waters, %s district not found", $district));
   }
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
@@ -63,7 +63,7 @@ Route::add('/v1/district/([a-z-0-9-]*)/subcounties', function ($district) use($u
     $obj->count = $count;
     $obj->subcounties = $names;
   } catch (DistrictNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new DistrictNotFoundException(sprintf("You're sailing in unchartered waters, %s district not found", $district));
   }
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
@@ -86,7 +86,7 @@ Route::add('/v1/district/([a-z-0-9-]*)/parishes', function ($district) use($ugan
     $obj->count = $count;
     $obj->parishes = $names;
   } catch (DistrictNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new DistrictNotFoundException(sprintf("You're sailing in unchartered waters, %s district not found", $district));
   }
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
@@ -109,7 +109,7 @@ Route::add('/v1/district/([a-z-0-9-]*)/villages', function ($district) use($ugan
     $obj->count = $count;
     $obj->villages = $names;
   } catch (DistrictNotFoundException $e) {
-    $obj->error = $e->getMessage();
+    throw new DistrictNotFoundException(sprintf("You're sailing in unchartered waters, %s district not found", $district));
   }
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
