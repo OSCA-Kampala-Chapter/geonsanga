@@ -30,7 +30,7 @@ Route::add('/v1/parish/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
-// Get all parish details, without a space e.g. 
+// Get all villages in a parish, without a space e.g. 
 Route::add('/v1/parish/([a-z-0-9-]*)/villages', function ($param) use($uganda, $obj) {
 
   $parish = insertSpaceBeforeUppercase($param);
