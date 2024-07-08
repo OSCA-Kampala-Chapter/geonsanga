@@ -22,7 +22,7 @@ Route::add('/v1/district/([a-z-0-9-]*)', function ($district) use($uganda, $obj)
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
-// Get all counties in a particular district e.fg. Mukono
+// Get all counties in a particular district e.g. Mukono
 Route::add('/v1/([a-z-0-9-]*)/counties', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
