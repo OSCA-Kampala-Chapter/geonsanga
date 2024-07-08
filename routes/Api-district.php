@@ -7,7 +7,7 @@ $obj = new stdClass();
 /**
  * District Particular operations
  */
-// Get all district details
+// Get all district details e.g. Mukono
 Route::add('/v1/district/([a-z-0-9-]*)', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
@@ -22,7 +22,7 @@ Route::add('/v1/district/([a-z-0-9-]*)', function ($district) use($uganda, $obj)
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
-// Get all counties in a particular district
+// Get all counties in a particular district e.fg. Mukono
 Route::add('/v1/([a-z-0-9-]*)/counties', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
@@ -45,7 +45,7 @@ Route::add('/v1/([a-z-0-9-]*)/counties', function ($district) use($uganda, $obj)
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
-// Get all subcounties in a particular district
+// Get all subcounties in a particular district e.g.Mukono
 Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
@@ -68,7 +68,7 @@ Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($district) use($uganda, $o
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
-// Get all parishes in a particular district
+// Get all parishes in a particular district e.g. Mukono
 Route::add('/v1/([a-z-0-9-]*)/parishes', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
@@ -91,7 +91,7 @@ Route::add('/v1/([a-z-0-9-]*)/parishes', function ($district) use($uganda, $obj)
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
-// Get all villages in a particular district
+// Get all villages in a particular district e.g. Mukono
 Route::add('/v1/([a-z-0-9-]*)/villages', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
