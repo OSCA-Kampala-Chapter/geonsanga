@@ -31,12 +31,6 @@ use Uganda\Uganda;
 $uganda = new Uganda();
 
 /**
- * validator
-*/
-use Rakit\Validation\Validator;
-$validator = new Validator;
-
-/**
  * validate paths
 */
 $path = __DIR__ ."/config/";  
