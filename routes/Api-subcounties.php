@@ -1,16 +1,11 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 use Steampixel\Route;
 use Uganda\Exceptions\SubCountyNotFoundException;
 
 $obj = new stdClass();
 
 /**
- * County Particular operations
+ * Subcounty Particular operations
  */
 // Get all subcounties details, without a space e.g. Abim
 Route::add('/v1/subcounty/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
