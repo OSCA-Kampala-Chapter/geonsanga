@@ -16,7 +16,6 @@ $obj = new stdClass();
 Route::add('/v1/county/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
 
   $county = insertSpaceBeforeUppercase($param);
-  $county_ = $uganda->county($county);
 
   header('Content-Type: application/json');
 
@@ -32,7 +31,7 @@ Route::add('/v1/county/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
 },'GET');
 
 // Get all subcounties in a particular county e.g. LabworCounty
-Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($param) use($uganda, $obj) {
+Route::add('/v1/county/([a-z-0-9-]*)/subcounties', function ($param) use($uganda, $obj) {
 
   $county = insertSpaceBeforeUppercase($param);
   
@@ -58,7 +57,7 @@ Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($param) use($uganda, $obj)
 },'GET');
 
 // Get all parsihes in a particular county e.g. LabworCounty
-Route::add('/v1/([a-z-0-9-]*)/parishes', function ($param) use($uganda, $obj) {
+Route::add('/v1/county/([a-z-0-9-]*)/parishes', function ($param) use($uganda, $obj) {
 
   $county = insertSpaceBeforeUppercase($param);
   
@@ -75,7 +74,7 @@ Route::add('/v1/([a-z-0-9-]*)/parishes', function ($param) use($uganda, $obj) {
       $names[] = $parish->name;
     endforeach;
     $obj->count = $count;
-    $obj->subcounties = $names;
+    $obj->parishes = $names;
   } catch (CountyNotFoundException $e) {
     $obj->error = $e->getMessage();
   }
@@ -84,7 +83,7 @@ Route::add('/v1/([a-z-0-9-]*)/parishes', function ($param) use($uganda, $obj) {
 },'GET');
 
 // Get all parsihes in a particular county e.g. LabworCounty
-Route::add('/v1/([a-z-0-9-]*)/villages', function ($param) use($uganda, $obj) {
+Route::add('/v1/county/([a-z-0-9-]*)/villages', function ($param) use($uganda, $obj) {
 
   $county = insertSpaceBeforeUppercase($param);
   
@@ -101,7 +100,7 @@ Route::add('/v1/([a-z-0-9-]*)/villages', function ($param) use($uganda, $obj) {
       $names[] = $village->name;
     endforeach;
     $obj->count = $count;
-    $obj->subcounties = $names;
+    $obj->villages = $names;
   } catch (CountyNotFoundException $e) {
     $obj->error = $e->getMessage();
   }

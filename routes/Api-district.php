@@ -23,7 +23,7 @@ Route::add('/v1/district/([a-z-0-9-]*)', function ($district) use($uganda, $obj)
 },'GET');
 
 // Get all counties in a particular district e.g. Mukono
-Route::add('/v1/([a-z-0-9-]*)/counties', function ($district) use($uganda, $obj) {
+Route::add('/v1/district/([a-z-0-9-]*)/counties', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
   try {
@@ -46,7 +46,7 @@ Route::add('/v1/([a-z-0-9-]*)/counties', function ($district) use($uganda, $obj)
 },'GET');
 
 // Get all subcounties in a particular district e.g.Mukono
-Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($district) use($uganda, $obj) {
+Route::add('/v1/district/([a-z-0-9-]*)/subcounties', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
   try {
@@ -69,7 +69,7 @@ Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($district) use($uganda, $o
 },'GET');
 
 // Get all parishes in a particular district e.g. Mukono
-Route::add('/v1/([a-z-0-9-]*)/parishes', function ($district) use($uganda, $obj) {
+Route::add('/v1/district/([a-z-0-9-]*)/parishes', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
   try {
@@ -92,7 +92,7 @@ Route::add('/v1/([a-z-0-9-]*)/parishes', function ($district) use($uganda, $obj)
 },'GET');
 
 // Get all villages in a particular district e.g. Mukono
-Route::add('/v1/([a-z-0-9-]*)/villages', function ($district) use($uganda, $obj) {
+Route::add('/v1/district/([a-z-0-9-]*)/villages', function ($district) use($uganda, $obj) {
   header('Content-Type: application/json');
 
   try {
