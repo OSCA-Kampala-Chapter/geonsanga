@@ -31,14 +31,12 @@ Route::add('/v1/county/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
   echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
-// // Get all subcounties in a particular county e.g. LabworCounty
+// Get all subcounties in a particular county e.g. LabworCounty
 Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($param) use($uganda, $obj) {
 
   $county = insertSpaceBeforeUppercase($param);
   
-
   header('Content-Type: application/json');
-
   try {
     $subcounties_ = $uganda
               ->county($county)
@@ -49,6 +47,32 @@ Route::add('/v1/([a-z-0-9-]*)/subcounties', function ($param) use($uganda, $obj)
     $names = [];
     foreach($subcounties_ as $subcounty):
       $names[] = $subcounty->name;
+    endforeach;
+    $obj->count = $count;
+    $obj->subcounties = $names;
+  } catch (CountyNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
+},'GET');
+
+// Get all parsihes in a particular county e.g. LabworCounty
+Route::add('/v1/([a-z-0-9-]*)/parishes', function ($param) use($uganda, $obj) {
+
+  $county = insertSpaceBeforeUppercase($param);
+  
+  header('Content-Type: application/json');
+  try {
+    $parishes = $uganda
+              ->county($county)
+              ->parishes();
+
+    $count = count($parishes);
+
+    $names = [];
+    foreach($parishes as $parish):
+      $names[] = $parish->name;
     endforeach;
     $obj->count = $count;
     $obj->subcounties = $names;
