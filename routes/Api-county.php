@@ -12,23 +12,24 @@ $obj = new stdClass();
 /**
  * County Particular operations
  */
-// Get all County details
-Route::add('/v1/county/([a-z-0-9-]*)', function ($county) use($uganda, $obj) {
+// Get all County details, without a space
+Route::add('/v1/county/([a-z-0-9-]*)', function ($param) use($uganda, $obj) {
   /**
    * @todo get the county without spaces and insert spaces before every uppercase letter
    */
-  // echo "Hello county";
-  echo $county;
-  // header('Content-Type: application/json');
+  $county = insertSpaceBeforeUppercase($param);
+  $county_ = $uganda->county($county);
 
-  // try {
-  //   $county_ = $uganda->county($county);
-    
-  //   $obj->count = 1;
-  //   $obj->county = $county_;
-  // } catch (CountyNotFoundException $e) {
-  //   $obj->error = "County Not Found";
-  // }
-  // echo json_encode($obj, JSON_PRETTY_PRINT);
+  header('Content-Type: application/json');
+
+  try {
+    $county_ = $uganda->county($county);
+    $obj->count = 1;
+    $obj->county = $county_;
+  } catch (CountyNotFoundException $e) {
+    $obj->error = $e->getMessage();
+  }
+
+  echo json_encode($obj, JSON_PRETTY_PRINT);
 },'GET');
 
