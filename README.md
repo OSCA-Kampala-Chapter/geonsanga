@@ -14,10 +14,32 @@ Geosanga is an open source package project to provide Ugandan based geolocation 
 | GET | /v1/subcounties | To fetch all subcounties |
 | GET | /v1/parishes | To fetch all parishes |
 | GET | /v1/villages | To fetch all villages |
+
+For further reference, please check out the [postman collection](https://documenter.getpostman.com/view/34662013/2sA3kRKQ8p)
 ### Technologies Used
 * [PHP](https://www.php.net/) A popular general-purpose scripting language that is especially suited to web development.
 Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
 * [JSON](https://www.json.org/json-en.html) JSON (JavaScript Object Notation) is a lightweight data-interchange format.
+### Examples
+To try out the example
+1. Clone the repo
+
+    ```git clone https://github.com/OSCA-Kampala-Chapter/geonsanga```
+
+2. Navigate to the project directory
+
+    ```cd geosanga```
+
+3. Install the dependencies
+
+    ```composer install```
+
+4. Start the local server
+```php -S localhost:8321```
+5. Open [http://localhost:8321/examples](http://localhost:8321/examples) in your prefered browser
+
+![alt text](image.png)
+
 ### Contribution Guide
 ### Authors
 ### Reference Docs
